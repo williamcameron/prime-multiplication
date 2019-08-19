@@ -20,3 +20,11 @@ npm run dev
 npm run build
 
 ```
+
+# Learned/enjoyed
+
+> I have enjoyed working through the unit testing workflow and learning jest on a problem from scratch. segmenting unit and component tests and automated testing.  
+
+# If more time
+
+> If more time, I'd like to rework the frontend quite a bit to possibly use Vuetify or more vue components rather than bootstrap css.   I'd also look into async functions and promises for the core generation method, as this would allow a smoother UX when generating larger tables of numbers.
