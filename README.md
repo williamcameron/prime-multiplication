@@ -9,7 +9,9 @@
 npm install
 
 # run tests
-npm run test
+npm run test   # run all tests
+npm run test:unit  #run quicker unit tests
+npm run test:spec  #run longer vue/spec tests
 
 # serve with hot reload at localhost:9000
 npm run dev

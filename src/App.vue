@@ -54,11 +54,19 @@ export default {
   },
   methods: {
     generateTable: function() {
-    
-      this.generating = true;
-      this.primes = getFirstPrimes(parseInt(this.inputNumber));
-      this.generating = false;
-      
+    let go = true;
+      if(this.inputNumber>=500){
+        go = false;
+        if(confirm('This might take a while.  Are you sure?')){
+          go = true;
+        }
+      }
+
+      if(go) {
+        this.generating = true;
+        this.primes = getFirstPrimes(parseInt(this.inputNumber));
+        this.generating = false;
+      }
     }
   }
 }
