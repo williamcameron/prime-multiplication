@@ -5,8 +5,6 @@ it('works', () => {
     expect(true).toBe(true);
 });
 
-
-
 it('is a Vue instance', () => {
     const wrapper = shallowMount(App);
     expect(wrapper.isVueInstance()).toBeTruthy()
@@ -19,12 +17,14 @@ it('has label asking for input of a number', () => {
 
 it('has input called inputNumber', () => {
     const wrapper = shallowMount(App);
-    const p = wrapper.find('input')
-    expect(p.attributes('name')).toBe('inputNumber');
+    const input = wrapper.find('input')
+    expect(input.attributes('name')).toBe('inputNumber');
 });
 
-it.skip('has button called Generate', () => {
-
+it('has button called Generate', () => {
+    const wrapper = shallowMount(App);
+    const button = wrapper.find('button')
+    expect(button.text()).toBe('Generate');
 });
 
 it.skip('preloads 5 into the input number as a starting point', () => {
