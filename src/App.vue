@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    
+    <p>Please enter a number to generate multiplication table.</p>
+    <input type="text" name="inputNumber" />
   </div>
 </template>
 
