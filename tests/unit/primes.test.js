@@ -15,3 +15,8 @@ test('request 1 primes returns 2', () => {
 test('request 5 returns array length 5', () => {
     expect(getFirstPrimes(5).length).toEqual(5);
 })
+
+test('request 3 primes returns first 3', () => {
+    expect(getFirstPrimes(3).length).toEqual(3);
+    expect(getFirstPrimes(3)).toBe([2,3,5]);
+});
