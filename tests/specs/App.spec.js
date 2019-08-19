@@ -56,3 +56,14 @@ it('loads the 5x5 on init', () => {
     expect(wrapper.html()).toContain("<td>14</td>");
     expect(wrapper.html()).toContain("<td>121</td>");
 });
+
+it('gives confirm box if input greater than 500', () => {
+    const wrapper = shallowMount(App)
+    window.confirm = jest.fn(() => false) // click 'no'
+
+    wrapper.vm.inputNumber = 501;
+    wrapper.vm.generateTable();
+
+    expect(window.confirm).toBeCalled() // or whatever assertions you want
+
+});
