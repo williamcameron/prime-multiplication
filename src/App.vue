@@ -55,9 +55,9 @@ export default {
   methods: {
     generateTable: function() {
     let go = true;
-      if(this.inputNumber>=500){
+      if(this.inputNumber>=500) {
         go = false;
-        if(confirm('This might take a while.  Are you sure?')){
+        if(confirm('This might take a while.  Are you sure?')) {
           go = true;
         }
       }

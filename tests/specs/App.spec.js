@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils';
 import App from '@/App.vue';
 
 it('works', () => {
@@ -7,7 +7,7 @@ it('works', () => {
 
 it('is a Vue instance', () => {
     const wrapper = shallowMount(App);
-    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.isVueInstance()).toBeTruthy();
 });
 
 it('has label asking for input of a number', () => {
@@ -17,18 +17,18 @@ it('has label asking for input of a number', () => {
 
 it('has input called inputNumber', () => {
     const wrapper = shallowMount(App);
-    const input = wrapper.find('input')
+    const input = wrapper.find('input');
     expect(input.attributes('name')).toBe('inputNumber');
 });
 
 it('has button called Generate', () => {
     const wrapper = shallowMount(App);
-    const button = wrapper.find('button')
+    const button = wrapper.find('button');
     expect(button.text()).toBe('Generate');
 });
 
 it('preloads 5 into the input number as a starting point', () => {
-    const wrapper = shallowMount(App)
+    const wrapper = shallowMount(App);
     expect(wrapper.vm.inputNumber).toEqual(5);
 });
 
@@ -36,8 +36,8 @@ it('trigger generate method on clicking button', () => {
     let wrapper = shallowMount(App);
     wrapper.vm.generateTable = jest.fn();
     
-    const button = wrapper.find('button')
-    button.trigger('click')
+    const button = wrapper.find('button');
+    button.trigger('click');
 
     expect(wrapper.vm.generateTable).toHaveBeenCalled();
 
@@ -50,7 +50,7 @@ it('has a primes data value', () => {
 
 it('loads the 5x5 on init', () => {
     // primes 2,3,5,7,11
-    const wrapper = shallowMount(App)
+    const wrapper = shallowMount(App);
     expect(wrapper.html()).toContain("<td>9</td>");
     expect(wrapper.html()).toContain("<td>15</td>");
     expect(wrapper.html()).toContain("<td>14</td>");
@@ -58,12 +58,35 @@ it('loads the 5x5 on init', () => {
 });
 
 it('gives confirm box if input greater than 500', () => {
-    const wrapper = shallowMount(App)
-    window.confirm = jest.fn(() => false) // click 'no'
+    const wrapper = shallowMount(App);
+    window.confirm = jest.fn(() => false); // click 'no'
 
     wrapper.vm.inputNumber = 501;
     wrapper.vm.generateTable();
 
-    expect(window.confirm).toBeCalled() // or whatever assertions you want
+    expect(window.confirm).toBeCalled(); // or whatever assertions you want
 
 });
+
+it('doesnt load table when pressing no on confirm box', () => {
+    const wrapper = shallowMount(App);
+    window.confirm = jest.fn(() => false); // click 'no'
+
+    wrapper.vm.inputNumber = 501;
+    wrapper.vm.generateTable();
+
+    expect(window.confirm).toBeCalled(); 
+    expect(wrapper.html()).not.toContain("<td>1509</td>");
+
+  });
+  it('loads table if press yes in confirm box', () => {
+    const wrapper = shallowMount(App);
+    window.confirm = jest.fn(() => true); // click 'yes'
+
+    wrapper.vm.inputNumber = 501;
+    wrapper.vm.generateTable();
+
+    expect(window.confirm).toBeCalled();
+    expect(wrapper.html()).toContain("<td>1509</td>");
+
+  });
