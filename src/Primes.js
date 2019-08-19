@@ -30,7 +30,7 @@ function isPrime(number) {
     return true;
 }
 
-function getFirstPrimes(numberToFetch) {
+function getFirstPrimes_Refactor(numberToFetch) {
 
     if (typeof numberToFetch !== 'number' || parseInt(numberToFetch) <= 0) {
         return [];
@@ -52,6 +52,34 @@ function getFirstPrimes(numberToFetch) {
     }
 
     return primes;
+}
+
+function getFirstPrimes(numberToFetch) {
+    numberToFetch *= 15; // Add buffer, as algrithm finds up to X
+    let primes = [];
+
+    for (let i = 0; i < numberToFetch; i++) {
+        primes[i] = 1;
+    }
+    primes[0] = 0;
+    primes[1] = 0;
+
+    for (let i = 2; i <= Math.sqrt(numberToFetch); i++) {
+        if (primes[i]) {
+            for (let j = 2; i * j <= numberToFetch; j++) {
+                primes[i * j] = 0;
+            }
+        }
+    }
+
+    // Let's filter down only the primes
+    let result = [];
+    primes.forEach((v, k) => {
+        if (v == true) {
+            result.push(k);
+        }
+    });
+    return result.splice(0, numberToFetch / 15); // Slice X back to the size we need
 }
 
 export { getFirstPrimes, isPrime };
