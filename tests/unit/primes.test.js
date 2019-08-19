@@ -23,7 +23,6 @@ describe('Testing getFirstPrimes function', () => {
         expect(getFirstPrimes(3)).toEqual([2,3,5]);
     });
 
-
     test('returns first 2 primes', () => {
         expect(getFirstPrimes(2)).toEqual([2,3]);
     });

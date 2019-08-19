@@ -45,11 +45,14 @@ it('trigger generate method on clicking button', () => {
 
 it('has a primes data value', () => {
     const wrapper = shallowMount(App);
-    expect(wrapper.vm.primes).toEqual([]);
+    expect(wrapper.vm.primes).not.toBeUndefined();
 })
 
-it.skip('loads the 5x5 on init', () => {
+it('loads the 5x5 on init', () => {
     // primes 2,3,5,7,11
-    // expect to see some of the 5x5 primes
-    // eg, 3x3=9, 5x3=15, 7x2=14,11x11=121
+    const wrapper = shallowMount(App)
+    expect(wrapper.html()).toContain("<td>9</td>");
+    expect(wrapper.html()).toContain("<td>15</td>");
+    expect(wrapper.html()).toContain("<td>14</td>");
+    expect(wrapper.html()).toContain("<td>121</td>");
 });

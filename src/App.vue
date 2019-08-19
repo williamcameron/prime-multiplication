@@ -1,77 +1,63 @@
 <template>
   <div id="app">
     <p>Please enter a number to generate multiplication table.</p>
-
     <div class="input-group mb-3">
-      <input class="form-control" type="number" name="inputNumber" />
-      <div class="input-group-append">
+      <input class="form-control" type="number" name="inputNumber" v-model="inputNumber" />
+        <div class="input-group-append">
         <button @click="generateTable()" class="btn btn-primary">Generate</button>
       </div>
     </div>
 
-  <table class="table table-bordered table-responsive">
+    <p v-if="generating" class="bg-info">Generating...</p>
+    <div v-else>
+      <table v-if="primes.length" class="table table-bordered table-responsive">
         <thead class="thead-light">
           <tr>
             <th scope="col"></th>
-            <th scope="col">1</th>
-            <th scope="col">2</th>
-            <th scope="col">3</th>
-            <th scope="col">4</th>
-            <th scope="col">5</th>
-            
+            <th scope="col" v-for="prime in primes" v-bind:key="prime">{{prime}}</th>
           </tr>
         </thead>
         
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>7</td>
-            <td>7</td>
-            <td>5</td>
-            <td>56</td>
-            <td>6</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>1</td>
-            <td>3</td>
-            <td>3</td>
-            <td>4</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>645</td>
-            <td>65</td>
-            <td>67</td>
-            <td>56</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>45</td>
-            <td>54</td>
-            <td>454</td>
-            <td>4</td>
-            <td>43</td>
+          <tr v-for="prime in primes" v-bind:key=prime>
+            <th scope="row">{{prime}}</th>
+            <td v-for="prime_nested in primes" v-bind:key=prime_nested>{{prime*prime_nested}}</td>
           </tr>
         </tbody>
       </table>
+      <p v-else>No primes found.</p>
+      <p v-if="usererror" class="bg-warning">Please enter a valid input to generate table.</p>
+    </div>
   </div>
 
 </template>
 
 <script>
+import {getFirstPrimes} from './Primes';
+
 export default {
   name: 'prime-multiply-table-app',
   data () {
     return {
       inputNumber: 5,
-      primes: []
+      primes: [],
+      generating: false
+    }
+  },
+  created () { 
+    this.generateTable();
+  },
+  computed: {
+    usererror: function() {
+      return parseInt(this.inputNumber)<=0;
     }
   },
   methods: {
-    generateTable: function () {
+    generateTable: function() {
+    
+      this.generating = true;
+      this.primes = getFirstPrimes(parseInt(this.inputNumber));
+      this.generating = false;
       
     }
   }
