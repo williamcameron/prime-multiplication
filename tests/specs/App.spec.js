@@ -32,6 +32,24 @@ it('preloads 5 into the input number as a starting point', () => {
     expect(wrapper.vm.inputNumber).toEqual(5);
 });
 
-it.skip('loads the 5x5 on init', () => {
+it('trigger generate method on clicking button', () => {
+    let wrapper = shallowMount(App);
+    wrapper.vm.generateTable = jest.fn();
+    
+    const button = wrapper.find('button')
+    button.trigger('click')
 
+    expect(wrapper.vm.generateTable).toHaveBeenCalled();
+
+});
+
+it('has a primes data value', () => {
+    const wrapper = shallowMount(App);
+    expect(wrapper.vm.primes).toEqual([]);
+})
+
+it.skip('loads the 5x5 on init', () => {
+    // primes 2,3,5,7,11
+    // expect to see some of the 5x5 primes
+    // eg, 3x3=9, 5x3=15, 7x2=14,11x11=121
 });
