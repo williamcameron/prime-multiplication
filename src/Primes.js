@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 function getFirstPrimes_TrialDivision(numberToFetch) {
     if (typeof numberToFetch !== 'number' || parseInt(numberToFetch) <= 0) {
         return [];
@@ -30,6 +31,7 @@ function isPrime(number) {
     return true;
 }
 
+/* istanbul ignore next */
 function getFirstPrimes_Refactor(numberToFetch) {
 
     if (typeof numberToFetch !== 'number' || parseInt(numberToFetch) <= 0) {
