@@ -27,8 +27,9 @@ it('has button called Generate', () => {
     expect(button.text()).toBe('Generate');
 });
 
-it.skip('preloads 5 into the input number as a starting point', () => {
-
+it('preloads 5 into the input number as a starting point', () => {
+    const wrapper = shallowMount(App)
+    expect(wrapper.vm.inputNumber).toEqual(5);
 });
 
 it.skip('loads the 5x5 on init', () => {
