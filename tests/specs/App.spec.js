@@ -9,3 +9,8 @@ it('is a Vue instance', () => {
     const wrapper = shallowMount(App);
     expect(wrapper.isVueInstance()).toBeTruthy()
 });
+
+it('has label asking for input of a number', () => {
+    const wrapper = shallowMount(App)
+    expect(wrapper.text()).toContain("Please enter a number to generate multiplication table.");
+});
