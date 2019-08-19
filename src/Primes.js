@@ -1,4 +1,4 @@
-function getFirstPrimes(numberToFetch) {
+function getFirstPrimes_TrialDivision(numberToFetch) {
     if (typeof numberToFetch !== 'number' || parseInt(numberToFetch) <= 0) {
         return [];
     }
@@ -13,7 +13,6 @@ function getFirstPrimes(numberToFetch) {
         checkingNumber++;
     }
     return primes;
-
 }
 
 function isPrime(number) {
@@ -29,6 +28,30 @@ function isPrime(number) {
         }
     }
     return true;
+}
+
+function getFirstPrimes(numberToFetch) {
+
+    if (typeof numberToFetch !== 'number' || parseInt(numberToFetch) <= 0) {
+        return [];
+    }
+
+    let primes = [2];
+    let c;
+    let currentNumber = 3; // Start at 3
+    for (let numberFound = 2; numberFound <= numberToFetch;) {
+        for (c = 2; c <= currentNumber - 1; c++) {
+            if (currentNumber % c == 0)
+                break;
+        }
+        if (c == currentNumber) {
+            primes.push(currentNumber);
+            numberFound++;
+        }
+        currentNumber += 2; // increment in 2's to only check odds
+    }
+
+    return primes;
 }
 
 export { getFirstPrimes, isPrime };

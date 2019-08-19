@@ -38,6 +38,22 @@ describe('Testing getFirstPrimes function', () => {
         expect(getFirstPrimes(-1)).toEqual([]);
     });
 
+
+    /* Stress testing from brief */
+    test('request large number of  primes returns correct length timely 1000', () => {
+        expect(getFirstPrimes(1000).length).toEqual(1000);
+    });
+    test('request large number of  primes returns correct length timely 2500', () => {
+        expect(getFirstPrimes(2500).length).toEqual(2500);
+    });
+    test('request large number of  primes returns correct length timely 5000', () => {
+        expect(getFirstPrimes(5000).length).toEqual(5000);
+    });
+    test('request large number of  primes returns correct length timely 10000', () => {
+        expect(getFirstPrimes(10000).length).toEqual(10000);
+    });
+
+
 });
 
 describe('Testing isPrime function', () => {
